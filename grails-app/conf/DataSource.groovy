@@ -1,3 +1,5 @@
+def dbHost = System.getenv()['PETCLINIC_DB'] ?: "localhost"
+
 hibernate {
 	cache.use_second_level_cache = true
 	cache.use_query_cache = false
@@ -10,7 +12,7 @@ environments {
     development {
         dataSource {
             dbCreate='update'
-            url="jdbc:postgresql://localhost:5432/petclinic"
+            url="jdbc:postgresql://${dbHost}:5432/petclinic"
             username = "grails"
             password = "super secure"
             pooled = true
@@ -34,7 +36,7 @@ environments {
     test {
         dataSource {
             dbCreate = "update"
-            url = 'jdbc:postgresql://localhost:5432/petclinic'
+            url = 'jdbc:postgresql://${dbHost}:5432/petclinic'
         }
     }
 
